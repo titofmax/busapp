@@ -1,0 +1,199 @@
+<template name="pipe">
+  <head>
+    <title>Head Hunter Dashboard</title> 
+  </head>
+
+  <body>
+    {{>navtop}}
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        {{>sidenav}}
+        <div class="col-sm-9 col-md-10 main">
+          <!--toggle sidebar button-->
+          <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
+          <h1 class="page-header">Pipe</h1>
+          {{>addJob}}
+          {{>jobs_infos}}
+          <!-- Modals -->
+            {{>jobToDeal}}
+            {{>jobEdit}}
+            {{>jobRemove}}
+          <!-- Mddals -->
+        </div><!--/row-->
+      </div>
+    </div><!--/.container-->
+    {{>footer}}
+  </body>
+</template>
+
+<template name="addJob">
+  <!--button-->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-job">
+    Add New Job
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="add-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Add New Job</h4>
+        </div>
+        <div class="modal-body">
+            <form id='form'>
+              <p>Company</p><input id="company" type="text" class="form-control" placeholder="Company">
+              <p>Min Salary</p><input id="min" type="text" class="form-control" placeholder="Min">
+              <p>Max Salary</p><input id="max" type="text" class="form-control" placeholder="Max">
+              <p>Fee for this job</p><input id="jobfee" type="text" class="form-control" placeholder="jobFee">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="submit btn btn-primary" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="jobs_infos">
+  <p>You have {{nbJobs}} jobs in your Pipe</p>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#id</th>
+              <th>Company</th>
+              <th>Min salary</th>
+              <th>Max salary</th>
+              <th>Fee</th>
+              <th>Turnover</th>
+              <th>Add to Pipe</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each data}}
+            <tr id="{{_id}}">
+              <td>{{_id}}</td>
+              <td>{{company}}</td>
+              <td>{{min}} €</td>
+              <td>{{max}} €</td>
+              <td>{{jobfee}} %</td>
+              <td>{{ca}} €</td>
+              <td>{{add_date}}</td>
+              <td>
+              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal">Deal</button>
+              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-edit">Edit</button>
+              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-remove">Del</button>
+              </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+</template>
+
+<template name="jobRemove">
+  <!-- Modal -->
+  <div class="modal fade" id="job-remove" tabindex="-1" role="dialog" aria-labelledby="job-remove" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Are you sure ?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="button" class="submit btn btn-primary" data-dismiss="modal">Yes, delete this job</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="jobEdit">
+  <!-- Modal -->
+  <div class="modal fade" id="job-edit" tabindex="-1" role="dialog" aria-labelledby="job-edit" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Something to change on this job ?</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            {{#with selectedJob}}
+              <p>Company</p>
+                <input type="text" id="edit-company" class="form-control" value="{{company}}">
+              <p>Min Salary</p>
+                <input type="text" id="edit-min" class="form-control" value="{{min}}">
+              <p>Max Salary</p>
+                <input type="text" id="edit-max" class="form-control" value="{{max}}">
+              <p>Expected fee</p>
+                <input type="text" id="edit-jobfee" class="form-control" value="{{jobfee}}">
+            {{else}}
+              <p>Cannot render the job</p>
+            {{/with}}
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="submit btn btn-primary" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="jobToDeal">
+  <!-- Modal -->
+  <div class="modal fade" id="job-to-deal" tabindex="-1" role="dialog" aria-labelledby="job-to-deal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Wow ! You've just made a deal ?</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            {{#with selectedJob}}
+              <p>Company</p>
+                <input type="text" class="form-control" value="{{company}}" disabled="disabled">
+              <p>Min Salary</p>
+                <input type="text" class="form-control" value="{{min}}" disabled="disabled">
+              <p>Max Salary</p>
+                <input type="text" class="form-control" value="{{max}}" disabled="disabled">
+              <p>Expected fee</p>
+                <input type="text" class="form-control" value="{{jobfee}}" disabled="disabled">
+            {{else}}
+              <p>Cannot render the job</p>
+            {{/with}}
+            <p>Salary</p>
+              <input id="deal-salary" type="text" class="form-control" placeholder="in euro (€)">
+            <p>Final fee</p>
+              <input id="deal-job-fee" type="text" class="form-control" placeholder="in %">
+            <p>Start date</p>
+              <input id="deal-start-date" type="date" class="form-control" placeholder="">
+            <p>Deal date</p>
+              <input id="deal-date" type="date" class="form-control" placeholder="">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="submit btn btn-primary" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
