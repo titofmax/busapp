@@ -13,7 +13,7 @@
           <p class="visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
           </p>
-          <h1 class="page-header">Billing</h1>
+          <h1 class="page-header"><i class="fa fa-file-text"></i> Billing</h1>
           {{>billing_infos}}
         </div><!--/row-->
       </div>
@@ -29,13 +29,13 @@
         <tr>
           <th>#id</th>
           <th>Company</th>
-          <th>Salaire</th>
+          <th>Salary</th>
           <th>Fee</th>
-          <!-- <th>CA généré</th> -->
+          <th>Turnover</th>
           <th>Deal date</th>
-          <th>Start date</th>
+          <th>Starting date</th>
           <!-- <th>Billing date</th> -->
-          <!-- <th>Paiement date</th> -->
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -45,8 +45,14 @@
           <td>{{company}}</td>
           <td>{{deal.dealSalary}} €</td>
           <td>{{deal.dealJobFee}} %</td>
+          <td>turnover €</td>
           <td>{{deal.dealDate}}</td> 
           <td>{{deal.dealStartDate}}</td> 
+          <td>
+            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal"><i class="fa fa-print"></i></button>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-edit"><i class="fa fa-pencil"></i></button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#job-remove"><i class="fa fa-trash-o"></i></button>
+          </td>
         </tr>
       {{/each}}
       </tbody>

@@ -1,6 +1,6 @@
 <template name="pipe">
   <head>
-    <title>Head Hunter Dashboard</title> 
+    <title>Hcube - The Head Hunter Dashboard</title> 
   </head>
 
   <body>
@@ -13,7 +13,8 @@
           <p class="visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
           </p>
-          <h1 class="page-header">Pipe</h1>
+          <h1 class="page-header"><i class="fa fa-crosshairs"></i> Pipe</h1>
+          {{>widget}}
           {{>addJob}}
           {{>jobs_infos}}
           <!-- Modals -->
@@ -28,11 +29,83 @@
   </body>
 </template>
 
+<template name="widget">
+  <div class="row">
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="widget">
+         <div class="panel-body bg-primary">
+            <div class="row row-table row-flush">
+               <div class="col-xs-8">
+                  <p class="mb0">Potential turnover</p>
+                  <h3 class="m0">1.5k</h3>
+               </div>
+               <div class="col-xs-4 text-center">
+                  <em class="fa fa-usd fa-2x"></em>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="widget">
+         <div class="panel-body bg-warning">
+            <div class="row row-table row-flush">
+               <div class="col-xs-8">
+                  <p class="mb0">Average age</p>
+                  <h3 class="m0">27 days</h3>
+               </div>
+               <div class="col-xs-4 text-center">
+                  <em class="fa fa-users fa-2x"></em>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="widget">
+         <div class="panel-body bg-danger">
+            <div class="row row-table row-flush">
+               <div class="col-xs-8">
+                  <p class="mb0">Average fee</p>
+                  <h3 class="m0">21 %</h3>
+               </div>
+               <div class="col-xs-4 text-center">
+                  <em class="fa fa-search fa-2x"></em>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="widget">
+         <div class="panel-body bg-success">
+            <div class="row row-table row-flush">
+               <div class="col-xs-8">
+                  <p class="mb0">Average salary</p>
+                  <h3 class="m0">47 k€</h3>
+               </div>
+               <div class="col-xs-4 text-center">
+                  <em class="fa fa-globe fa-2x"></em>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</template>
+
 <template name="addJob">
   <!--button-->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-job">
+  <button type="button" class="btn btn-labeled btn-primary pull-right" data-toggle="modal" data-target="#add-job">
+   <span class="btn-label"><i class="fa fa-plus-circle"></i>
+   </span>Add New Job</button>
+<!--   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-job">
     Add New Job
-  </button>
+  </button> -->
   <!-- Modal -->
   <div class="modal fade" id="add-job" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -61,7 +134,7 @@
 </template>
 
 <template name="jobs_infos">
-  <p>You have {{nbJobs}} jobs in your Pipe</p>
+  <!-- <p>You have {{nbJobs}} jobs in your Pipe</p> -->
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -85,11 +158,11 @@
               <td>{{max}} €</td>
               <td>{{jobfee}} %</td>
               <td>{{ca}} €</td>
-              <td>{{add_date}}</td>
+              <td><i class="fa fa-calendar"></i> {{add_date}}</td>
               <td>
-              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal">Deal</button>
-              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-edit">Edit</button>
-              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-remove">Del</button>
+              <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal"><i class="fa fa-check"></i></button>
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-edit"><i class="fa fa-pencil"></i></button>
+              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#job-remove"><i class="fa fa-trash-o"></i></button>
               </td>
             </tr>
           {{/each}}
