@@ -38,7 +38,7 @@
             <div class="row row-table row-flush">
                <div class="col-xs-8">
                   <p class="mb0">Potential turnover</p>
-                  <h3 class="m0">1.5k</h3>
+                  <h3 id="turnover" class="m0">{{#with turnover}}{{turnover}}{{/with}}</h3>
                </div>
                <div class="col-xs-4 text-center">
                   <em class="fa fa-usd fa-2x"></em>
@@ -139,7 +139,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>#id</th>
+              <!-- <th>#id</th> -->
               <th>Company</th>
               <th>Min salary</th>
               <th>Max salary</th>
@@ -150,14 +150,14 @@
             </tr>
           </thead>
           <tbody>
-          {{#each data}}
+          {{#each job}}
             <tr id="{{_id}}">
-              <td>{{_id}}</td>
+              <!-- <td>{{_id}}</td> -->
               <td>{{company}}</td>
               <td>{{min}} €</td>
               <td>{{max}} €</td>
-              <td>{{jobfee}} %</td>
-              <td>{{ca}} €</td>
+              <td>{{fee}} %</td>
+              <td>{{turnover}} €</td>
               <td><i class="fa fa-calendar"></i> {{add_date}}</td>
               <td>
               <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal"><i class="fa fa-check"></i></button>

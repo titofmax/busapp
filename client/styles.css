@@ -84,3 +84,12 @@ footer {
 .widget {
   /*padding: 10px;*/
 }
+
+
+/*
+ * Side Nav
+ */
+
+ #sidenav ul li i {
+  width: 2em;
+ }

@@ -27,31 +27,34 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#id</th>
+          <!-- <th>#id</th> -->
           <th>Company</th>
           <th>Salary</th>
           <th>Fee</th>
           <th>Turnover</th>
           <th>Deal date</th>
           <th>Starting date</th>
-          <!-- <th>Billing date</th> -->
+          <th>Billing date</th>
+          <th>Paiement date</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
       {{#each data}}
         <tr>
-          <td>{{_id}}</td>
+          <!-- <td>{{_id}}</td> -->
           <td>{{company}}</td>
-          <td>{{deal.dealSalary}} €</td>
-          <td>{{deal.dealJobFee}} %</td>
+          <td>{{deal.salary}} €</td>
+          <td>{{deal.jobFee}} %</td>
           <td>turnover €</td>
-          <td>{{deal.dealDate}}</td> 
-          <td>{{deal.dealStartDate}}</td> 
+          <td>{{deal.date}}</td> 
+          <td>{{deal.startingDate}}</td> 
+          <td>{{deal.startingDate}}</td> 
+          <td>Paiement</td> 
           <td>
-            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#job-to-deal"><i class="fa fa-print"></i></button>
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-edit"><i class="fa fa-pencil"></i></button>
-            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#job-remove"><i class="fa fa-trash-o"></i></button>
+            <button id="bill-to-pdf" type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#bill-print"><i class="fa fa-print"></i></button>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#bill-edit"><i class="fa fa-pencil"></i></button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#bill-remove"><i class="fa fa-trash-o"></i></button>
           </td>
         </tr>
       {{/each}}

@@ -10,12 +10,12 @@ function insertTests(){
 	var now = Meteor.call('getTodayDate');
 
 		var test_jobs = [
-      { company: 'Ercom',     min: 40000, max: 50000, jobfee: 20, add_date: now },
-      { company: 'Leboncoin', min: 40000, max: 50000, jobfee: 20, add_date: now },
-      { company: 'MrDrive',   min: 40000, max: 50000, jobfee: 20, add_date: now }
+      { company: 'Ercom',     min: 40000, max: 50000, fee: 20},
+      { company: 'Leboncoin', min: 40000, max: 50000, fee: 20},
+      { company: 'MrDrive',   min: 40000, max: 50000, fee: 20}
     ]
-    _.each(test_jobs, function(doc) { 
-      Jobs.insert(doc);
+    _.each(test_jobs, function(job) { 
+      Meteor.call('jobCreate',job.company,job.min,job.max,job.fee);
     })
 }
 
