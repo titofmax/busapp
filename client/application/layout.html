@@ -1,5 +1,6 @@
 <Template name="layout">
   <body>
+  {{#if currentUser}}
     {{>navtop}}
     <div class="container-fluid">
       <div class="row row-offcanvas row-offcanvas-left">
@@ -14,5 +15,8 @@
       </div>
     </div><!--/.container-->
     {{>footer}}
+  {{else}}
+    {{> yield}}
+  {{/if}}
   </body>
 </Template>

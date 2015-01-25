@@ -10,3 +10,5 @@ iron:router
 fortawesome:fontawesome
 accounts-ui
 accounts-password
+underscorestring:underscore.string
+aldeed:collection2
