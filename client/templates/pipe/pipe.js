@@ -2,7 +2,7 @@ Template.jobRemove.events({
 	'click .submit': function (event, template) {
 		event.preventDefault();
 		var job = Jobs.findOne(Session.get("selectedJob"));
-		Meteor.call('jobRemove', job);
+		jobRemove(job);
 	}
 })
 
@@ -19,14 +19,14 @@ Template.jobEdit.events({
 		var company = document.getElementById('edit-company').value;
 		var min     = document.getElementById('edit-min').value;
 		var max     = document.getElementById('edit-max').value;
-		var jobfee  = document.getElementById('edit-jobfee').value;
-		Meteor.call('jobEdit', job, company, min, max, jobfee);
+		var fee  = document.getElementById('edit-fee').value;
+		jobEdit(job, company, min, max, fee);
 	}
 })
 
 Template.jobs_infos.helpers({
 	job: function () {
-		return Jobs.find({});
+		return getPipeJobsList();
 	},
 
 	nbJobs: function () {
@@ -55,10 +55,10 @@ Template.jobToDeal.events({
 		event.preventDefault();
 		var job = Jobs.findOne(Session.get("selectedJob"));
 		var dealSalary = document.getElementById('deal-salary').value;
-		var dealJobFee = document.getElementById('deal-job-fee').value;
+		var dealFee = document.getElementById('deal-fee').value;
 		var dealStartDate = document.getElementById('deal-start-date').value;
 		var dealDate = document.getElementById('deal-date').value;
-		Meteor.call('jobToDeal', job, dealSalary, dealJobFee, dealDate, dealStartDate);
+		jobToDeal(job, dealSalary, dealFee, dealDate, dealStartDate);
 	}
 })
 
@@ -68,28 +68,21 @@ Template.addJob.events({
 	  var company = document.getElementById('company').value;
 	  var min     = document.getElementById('min').value;
 	  var max     = document.getElementById('max').value;
-	  var jobfee  = document.getElementById('jobfee').value;
-	  Meteor.call('jobCreate', company, min, max, jobfee);
+	  var fee  = document.getElementById('fee').value;
+	  jobCreate(company, min, max, fee);
     }
 });
 
 Template.widget.helpers({
-
 	turnover: function () {
-		Meteor.call('getPotentialTurnover', function (error, result) {
-			if (error) {
-			// handle error
-				return "error";
-			} else {
-				// alert(result);
-				$('#turnover').html(result);
-				// return result;
-			}	
-  		});
-	
+		return getPotentialTurnover();
 	},
 
-	turnover1: function () {
-		return Meteor.call('getPotentialTurnover');
+	fee: function () {
+		return getPipeAverageFee();
+	},
+
+	salary: function () {
+		return getPipeAverageSalary();
 	}
 })

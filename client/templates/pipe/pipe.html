@@ -1,32 +1,14 @@
 <template name="pipe">
-  <head>
-    <title>Hcube - The Head Hunter Dashboard</title> 
-  </head>
-
-  <body>
-    {{>navtop}}
-    <div class="container-fluid">
-      <div class="row row-offcanvas row-offcanvas-left">
-        {{>sidenav}}
-        <div class="col-sm-9 col-md-10 main">
-          <!--toggle sidebar button-->
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
-          </p>
+{{>loginButtons}}
           <h1 class="page-header"><i class="fa fa-crosshairs"></i> Pipe</h1>
           {{>widget}}
           {{>addJob}}
           {{>jobs_infos}}
           <!-- Modals -->
-            {{>jobToDeal}}
-            {{>jobEdit}}
-            {{>jobRemove}}
+          {{>jobToDeal}}
+          {{>jobEdit}}
+          {{>jobRemove}}
           <!-- Mddals -->
-        </div><!--/row-->
-      </div>
-    </div><!--/.container-->
-    {{>footer}}
-  </body>
 </template>
 
 <template name="widget">
@@ -38,7 +20,7 @@
             <div class="row row-table row-flush">
                <div class="col-xs-8">
                   <p class="mb0">Potential turnover</p>
-                  <h3 id="turnover" class="m0">{{#with turnover}}{{turnover}}{{/with}}</h3>
+                  <h3 id="turnover" class="m0">{{turnover}} €</h3>
                </div>
                <div class="col-xs-4 text-center">
                   <em class="fa fa-usd fa-2x"></em>
@@ -53,8 +35,8 @@
          <div class="panel-body bg-warning">
             <div class="row row-table row-flush">
                <div class="col-xs-8">
-                  <p class="mb0">Average age</p>
-                  <h3 class="m0">27 days</h3>
+                  <p class="mb0">Average fee</p>
+                  <h3 class="m0">{{fee}} %</h3>
                </div>
                <div class="col-xs-4 text-center">
                   <em class="fa fa-users fa-2x"></em>
@@ -86,7 +68,7 @@
             <div class="row row-table row-flush">
                <div class="col-xs-8">
                   <p class="mb0">Average salary</p>
-                  <h3 class="m0">47 k€</h3>
+                  <h3 class="m0">{{salary}} €</h3>
                </div>
                <div class="col-xs-4 text-center">
                   <em class="fa fa-globe fa-2x"></em>
@@ -121,7 +103,7 @@
               <p>Company</p><input id="company" type="text" class="form-control" placeholder="Company">
               <p>Min Salary</p><input id="min" type="text" class="form-control" placeholder="Min">
               <p>Max Salary</p><input id="max" type="text" class="form-control" placeholder="Max">
-              <p>Fee for this job</p><input id="jobfee" type="text" class="form-control" placeholder="jobFee">
+              <p>Fee for this job</p><input id="fee" type="text" class="form-control" placeholder="jobFee">
             </form>
         </div>
         <div class="modal-footer">
@@ -212,7 +194,7 @@
               <p>Max Salary</p>
                 <input type="text" id="edit-max" class="form-control" value="{{max}}">
               <p>Expected fee</p>
-                <input type="text" id="edit-jobfee" class="form-control" value="{{jobfee}}">
+                <input type="text" id="edit-fee" class="form-control" value="{{fee}}">
             {{else}}
               <p>Cannot render the job</p>
             {{/with}}
@@ -243,23 +225,17 @@
             {{#with selectedJob}}
               <p>Company</p>
                 <input type="text" class="form-control" value="{{company}}" disabled="disabled">
-              <p>Min Salary</p>
-                <input type="text" class="form-control" value="{{min}}" disabled="disabled">
-              <p>Max Salary</p>
-                <input type="text" class="form-control" value="{{max}}" disabled="disabled">
-              <p>Expected fee</p>
-                <input type="text" class="form-control" value="{{jobfee}}" disabled="disabled">
+              <p>Salary</p>
+                <input id="deal-salary" type="text" class="form-control" placeholder="in euro (€)">
+              <p>Final fee</p>
+                <input id="deal-fee" type="text" class="form-control" placeholder="in %">
+              <p>Start date</p>
+                <input id="deal-start-date" type="date" class="form-control" placeholder="">
+              <p>Deal date</p>
+                <input id="deal-date" type="date" class="form-control" placeholder="">
             {{else}}
               <p>Cannot render the job</p>
             {{/with}}
-            <p>Salary</p>
-              <input id="deal-salary" type="text" class="form-control" placeholder="in euro (€)">
-            <p>Final fee</p>
-              <input id="deal-job-fee" type="text" class="form-control" placeholder="in %">
-            <p>Start date</p>
-              <input id="deal-start-date" type="date" class="form-control" placeholder="">
-            <p>Deal date</p>
-              <input id="deal-date" type="date" class="form-control" placeholder="">
           </form>
         </div>
         <div class="modal-footer">

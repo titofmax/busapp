@@ -1,3 +1,5 @@
+Meteor.subscribe('Jobs');
+
 function styleSidenavSelectedItem() {
 	var url = Router.current().route._path;
 	var items = document.getElementsByClassName('side-nav-item');
@@ -10,10 +12,10 @@ function styleSidenavSelectedItem() {
 
 Template.sidenav.rendered = function () {
 	styleSidenavSelectedItem();
-}
+};
 
-Template.billing_infos.helpers({
-	data:function () {
-		return Jobs.find({deal: {$exists: true}});
+Template.sidenav.events ({
+	'click #sidenav' : function(event, template) {
+		styleSidenavSelectedItem();
 	}
-})
+});
