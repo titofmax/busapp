@@ -1,10 +1,9 @@
 Meteor.startup(function () {
-	//Returns today's date in format "dd/mm/yyyy"
-	getTodayDate = function () {
-		var today = new Date();
-	    var dd = today.getDate();
-	    var mm = today.getMonth()+1; //January is 0!
-	    var yyyy = today.getFullYear();
+	//Returns a date in string format "dd/mm/yyyy"
+	getPrettyDate = function (date) {
+	    var dd = date.getDate();
+	    var mm = date.getMonth()+1; //January is 0!
+	    var yyyy = date.getFullYear();
 	    if(dd<10){
 	        dd='0'+dd
 	    } 

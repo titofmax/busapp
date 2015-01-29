@@ -16,7 +16,7 @@ getPotentialTurnover = function () {
 	_.each(getPipeJobsList().fetch(), function(job) {
 		turnover = turnover + parseFloat(job.turnover);
   	})
-	return (turnover);
+	return _.numberFormat(turnover,0);
 };
 
 getPipeOldestJob = function () {
@@ -28,7 +28,16 @@ getPipeYougestJob = function () {
 };
 
 getPipeAverageAge = function () {
-	return null;
+  	var n = getPipeJobsNb();
+  	if( n == 0 ) {
+  		return null;
+  	} else {
+  		var age = 0;
+		_.each(getPipeJobsList().fetch(), function(job) {
+			age = age + getJobAge(job);
+	  	})
+		return age = _.numberFormat(age/n, 2);
+  	}
 };
 
 getAverageDealingTime = function () {
@@ -36,15 +45,15 @@ getAverageDealingTime = function () {
 };
 
 getPipeAverageFee = function () {
-	var fee = 0;
-	_.each(getPipeJobsList().fetch(), function(job) {
-		fee = fee + parseFloat(job.fee);
-  	})
   	var n = getPipeJobsNb();
   	if( n == 0 ) {
   		return null;
   	} else {
-		return fee = fee/n;
+		var fee = 0;
+		_.each(getPipeJobsList().fetch(), function(job) {
+			fee = fee + parseFloat(job.fee);
+	  	})
+		return fee = _.numberFormat(fee/n, 2);
   	}
 };
 
@@ -61,7 +70,7 @@ getPipeAverageJobTurnover = function () {
   	if( n == 0 ) {
   		return null;
   	} else {
-		return getPotentialTurnover()/n;
+		return _.numberFormat(getPotentialTurnover()/n);
   	}
 };
 
@@ -82,7 +91,6 @@ getPipeAverageSalary = function () {
 		_.each(getPipeJobsList().fetch(), function(job) {
 			salary = salary + (parseFloat(job.min)+parseFloat(job.max))/2;
 	  	})
-	  	salary = salary/n;
-		return salary;
+	  	return salary = _.numberFormat(salary/n, 0);
 	}
 };

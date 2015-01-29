@@ -1,6 +1,6 @@
 Meteor.subscribe('Jobs');
 
-function styleSidenavSelectedItem() {
+styleSidenavSelectedItem = function () {
 	var url = Router.current().route._path;
 	var items = document.getElementsByClassName('side-nav-item');
     _.each(items, function(item) {

@@ -10,7 +10,6 @@ Meteor.startup(function () {
   function insertTests() {
       //Cleaning DB
       Jobs.remove({});
-      var now = getTodayDate();
   		var test_jobs = [
         { company: 'Ercom',     min: 40000, max: 50000, fee: 20},
         { company: 'Leboncoin', min: 40000, max: 50000, fee: 20},

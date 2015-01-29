@@ -25,7 +25,7 @@ Template.jobEdit.events({
 })
 
 Template.jobs_infos.helpers({
-	job: function () {
+	jobs: function () {
 		return getPipeJobsList();
 	},
 
@@ -84,5 +84,9 @@ Template.widget.helpers({
 
 	salary: function () {
 		return getPipeAverageSalary();
+	},
+
+	age: function () {
+		return getPipeAverageAge();
 	}
 })
